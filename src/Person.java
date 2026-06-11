@@ -1,4 +1,4 @@
-public class Person {
+public abstract class Person {
     String name;
     int age;
 
@@ -8,8 +8,8 @@ public class Person {
     }
 
     void showInfo() {
-
         System.out.println("Name: " + name);
         System.out.println("age:" + age);
     }
+    abstract  void showRole();
 }

@@ -16,6 +16,12 @@ public class Manager extends Person implements Worker {
     }
 
     @Override
+    void showRole() {
+        System.out.println(name+" is a manager");
+
+    }
+
+    @Override
     public void work() {
         System.out.println(name+"manages"+department);
     }

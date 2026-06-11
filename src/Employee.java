@@ -15,4 +15,9 @@ public class Employee extends Person implements Worker{
     public void work() {
         System.out.println(name+"is working"+companyName);
     }
+
+    @Override
+    void showRole() {
+        System.out.println(name+" is a Employee");
+    }
 }
