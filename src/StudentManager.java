@@ -5,9 +5,21 @@ public class StudentManager {
     private ArrayList<Student> students = new ArrayList<>();
 
     public void addStudent(Student student) {
+
+        if (student.getAge() < 5 || student.getAge() > 100) {
+            System.out.println("Invalid age.");
+            return;
+        }
+
+        if (student.getGrade() < 0 || student.getGrade() > 20) {
+            System.out.println("Invalid grade.");
+            return;
+        }
+
         students.add(student);
         System.out.println("Student added successfully.");
     }
+
 
     public void showAllStudents() {
         if (students.isEmpty()) {
@@ -45,7 +57,7 @@ public class StudentManager {
                     double grade = Double.parseDouble(parts[2]);
 
                     Student student = new Student(name, age, grade);
-                    System.out.println("student is:"+name+" "+age+" "+grade);
+                    System.out.println("student is:" + name + " " + age + " " + grade);
                     students.add(student);
                 }
             }
@@ -57,4 +69,25 @@ public class StudentManager {
             System.out.println("Invalid data format in file.");
         }
     }
+
+    public void searchStudent(String name) {
+        for (Student student : students) {
+            if (student.getName().equalsIgnoreCase(name)){
+                student.showInfo();
+                return;
+            }
+            System.out.println("Student not found.");
+        }
+    }
+    public void removeStudent(String name){
+        for (int i = 0; i <students.size() ; i++) {
+            if (students.get(i).getName().equalsIgnoreCase(name)){
+                students.remove(i);
+                System.out.println("Student removed.");
+                return;
+            }
+
+        }
+    }
 }
+
