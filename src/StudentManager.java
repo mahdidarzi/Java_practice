@@ -1,5 +1,8 @@
 import java.io.*;
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.Comparator;
 
 public class StudentManager {
     private ArrayList<Student> students = new ArrayList<>();
@@ -67,27 +70,53 @@ public class StudentManager {
             System.out.println("Error loading students from file.");
         } catch (NumberFormatException e) {
             System.out.println("Invalid data format in file.");
+        } catch (InvalidStudentDataException e) {
+            throw new RuntimeException(e);
         }
     }
 
     public void searchStudent(String name) {
         for (Student student : students) {
-            if (student.getName().equalsIgnoreCase(name)){
+            if (student.getName().equalsIgnoreCase(name)) {
                 student.showInfo();
                 return;
             }
             System.out.println("Student not found.");
         }
     }
-    public void removeStudent(String name){
-        for (int i = 0; i <students.size() ; i++) {
-            if (students.get(i).getName().equalsIgnoreCase(name)){
+
+    public void removeStudent(String name) {
+        for (int i = 0; i < students.size(); i++) {
+            if (students.get(i).getName().equalsIgnoreCase(name)) {
                 students.remove(i);
                 System.out.println("Student removed.");
                 return;
             }
 
         }
+    }
+
+    public void showAverageGrade() {
+        if (students.isEmpty()) {
+            System.out.println("No students available.");
+            return;
+        }
+        double sum = 0;
+        for (Student student : students) {
+            sum += student.getGrade();
+        }
+        double average = sum / students.size();
+        System.out.println("Average grade: " + average);
+    }
+    public void sortByGradeDescending() {
+        Collections.sort(students, new Comparator<Student>() {
+            @Override
+            public int compare(Student s1, Student s2) {
+                return Double.compare(s2.getGrade(), s1.getGrade());
+            }
+        });
+
+        System.out.println("Students sorted by grade (descending).");
     }
 }
 
