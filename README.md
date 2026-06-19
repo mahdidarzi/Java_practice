@@ -54,6 +54,7 @@ Implemented features include:
 | JUnit 5 | Unit testing framework |
 | SLF4J | Logging abstraction |
 | Logback | Logging implementation |
+| Lombok  |  generating them automatically through annotations,  |
 | IntelliJ IDEA | Development environment |
 
 ---
